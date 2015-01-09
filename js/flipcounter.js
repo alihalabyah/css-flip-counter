@@ -95,6 +95,17 @@ var flipCounter = function(d, options){
   };
 
   /**
+   * Sets the stop of the counter.
+   *
+   * @param {int} n
+   *
+   */
+  this.setStop = function(n){
+    counter.stop = _isNumber(n) ? n : defaults.stop;
+    return this;
+  };
+
+  /**
    * Increments counter by one animation based on set 'inc' value.
    */
   this.step = function(){
@@ -165,6 +176,8 @@ var flipCounter = function(d, options){
     _digitCheck(x, y);
     // Do first animation
     if (counter.auto === true) nextCount = setTimeout(_doCount, counter.pace);
+    // Stop counter
+    if (counter.value === counter.stop) _clearNext();
   }
 
   function _digitCheck(x, y){
